@@ -16,13 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.urls import include
-from hexlet_django_blog import views
+from hexlet_django_blog.article import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
 	path('', views.index),
-	path('about/', views.about),
-	path('articles/', include('hexlet_django_blog.article.urls')),
-#таким образом, все, что начинается с articles будет перенаправляться на article.urls
 ]
