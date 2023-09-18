@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from django.shortcuts import HttpResponse
+from django.views import View
 
 # Create your views here.
-def index(request):
-    context = {'app_name': 'Блог имени Хекслета'}
-    return render(request, 'articles/index.html', context) 
+class ArticleIndexView(View):
+    
+    def get(self, request, *args, **kwargs):
+       context = {'app_name': 'Блог имени Хекслета'}
+       return render(request, 'articles/index.html', context) 
 

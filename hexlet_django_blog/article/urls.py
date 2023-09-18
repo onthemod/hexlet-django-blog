@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from hexlet_django_blog.article import views
+from hexlet_django_blog.article.views import ArticleIndexView 
 
 urlpatterns = [
-	path('', views.index),
+	path('', ArticleIndexView.as_view()),
 ]
