@@ -6,8 +6,9 @@ class IndexView(TemplateView):
     template_name = 'index.html'
     
     def get(self, request, *args, **kwargs):
-        url = reverse('article', kwargs={'article_id': 42, 'tags': 'python'})
-        return redirect(url)
+        #url = reverse('article', kwargs={'article_id': 42, 'tags': 'python'})
+        #return redirect(url)
+        return render(request, self.template_name, context = {'who': 'world'})
 
     #def get_context_data(self, **kwargs):
     #   url = reverse('article', kwargs={'article_id': 42, 'tags': 'python'})
