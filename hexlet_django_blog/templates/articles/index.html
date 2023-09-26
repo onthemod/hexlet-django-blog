@@ -6,5 +6,6 @@
 	    <h2><a href="{% url 'article' article.id%}">{{ article.name }}</a></h2>
 		<div>{{ article.body|slice:":20" }}</div>
 	{% endfor %}
+    <h2><a href="{% url 'article_create' %}">Создать статью</a></h2>
 {% endblock %}
 

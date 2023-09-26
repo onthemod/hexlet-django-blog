@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.http import HttpResponse
 from hexlet_django_blog.article.models import Article
+from .forms import ArticleForm
 
 
 def index(request, tags, article_id):
@@ -25,3 +26,20 @@ class ArticleView(View):
         return render(request, 'articles/show.html', context={
             'article': article,
         })
+
+class ArticleFormCreateView(View):
+
+    def get(self, request, *args, **kwargs):
+        form = ArticleForm()
+        return render(request, 'articles/create.html', {'form': form})
+        
+    def post(self, request, *args, **kwargs):
+        form = ArticleForm(request.POST)
+        valid = False
+        valid = form.is_valid()
+        if valid:
+            form.save()
+            return redirect('articles') # Редирект на указанный маршрут
+        # Если данные некорректные, то возвращаем человека обратно на страницу с заполненной формой
+        print(f'хуууууууууууй {form.errors}')
+        return render(request, 'articles/create.html', {'form': form})
